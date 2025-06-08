@@ -1,0 +1,55 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/06/02 15:17:42 by marvin            #+#    #+#             */
+/*   Updated: 2025/06/02 15:17:42 by marvin           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PHILO_H
+#define PHILO_H
+
+#include <pthread.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <sys/time.h>
+#include <string.h>
+
+# define EXIT_FAILURE 1
+# define EXIT_SUCCESS 0
+
+typedef unsigned long	t_timestamp;
+
+typedef struct s_data
+{
+	int				nbr_of_philos;
+	int				all_eats;
+	int				must_eats;
+	bool			death_happened;
+	t_timestamp		time_to_die;
+	t_timestamp		time_to_eat;
+	t_timestamp		time_to_sleep;
+	t_timestamp		start_time;
+	t_mutex			mutex;
+}				t_data;
+
+typedef struct s_philo
+{
+	int				id;
+	int				right_fork;
+	int				left_fork;
+	int				meals_count;
+	t_data			*data;
+	pthread_t		thread;
+	t_timestamp		last_meal_time;
+	bool			finished;
+}				t_philo;
+
+// helper functions
+int	error_message(char *error_message);
+#endif
