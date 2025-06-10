@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/08 18:39:21 by ajamoun           #+#    #+#             */
-/*   Updated: 2025/06/08 18:39:21 by ajamoun          ###   ########.fr       */
+/*   Created: 2025/06/02 15:17:42 by marvin            #+#    #+#             */
+/*   Updated: 2025/06/02 15:17:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,7 @@ typedef struct s_philo
 
 // helper functions
 int	error_message(char *error_message);
+int validate_args(int ac, char **av);
+//libc functions
+int	ft_atoi(const char *str);
 #endif

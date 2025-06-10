@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/08 18:39:40 by ajamoun           #+#    #+#             */
-/*   Updated: 2025/06/08 18:39:40 by ajamoun          ###   ########.fr       */
+/*   Created: 2025/06/02 15:42:00 by marvin            #+#    #+#             */
+/*   Updated: 2025/06/02 15:42:00 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int  philos_checker(t_data *data, t_philo **philos, int ac, char **av)
 {
-    if(args_checker(ac - 1, av + 1))
+    if(validate_args(ac - 1, av + 1))
     {
         error_message("Error: At least one argument is not valid.\n");
 		return (EXIT_FAILURE);

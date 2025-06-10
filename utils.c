@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/02 15:57:30 by marvin            #+#    #+#             */
-/*   Updated: 2025/06/02 15:57:30 by marvin           ###   ########.fr       */
+/*   Created: 2025/06/04 17:09:25 by ajamoun           #+#    #+#             */
+/*   Updated: 2025/06/04 17:09:25 by ajamoun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	error_message(char *error_message)
+int	ft_atoi(const char *str)
 {
-    int len;
-    len = ft_strlen(error_message) + 1;
-    write(2, error_message, len);
-    return (len);
+	int	i;
+	int	res;
+	int	prev_res;	
+
+	res = 0;
+	i = 0;
+	while (str[i] >= 48 && str[i] <= 57)
+	{
+		prev_res = res;
+		res = res * 10 + (str[i] - '0');
+		if (prev_res > res)
+			return (-1);
+		i++;
+	}
+	return (res);
 }
