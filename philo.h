@@ -25,6 +25,14 @@
 
 typedef unsigned long	t_timestamp;
 
+typedef struct s_mutex
+{
+	pthread_mutex_t	print;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	death;
+	pthread_mutex_t	meal;
+}				t_mutex;
+
 typedef struct s_data
 {
 	int				nbr_of_philos;

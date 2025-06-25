@@ -14,7 +14,22 @@
 
 int init_data(char *av[], t_data *data, int must_eats)
 {
-
+    data->mutex.fork = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
+    if(!data->mutex.fork)
+        return (EXIT_FAILURE);
+    data->nbr_of_philos = ft_atoi(av[0]);
+    data->time_to_die = ft_atoi(av[1]);
+    data->time_to_eat = ft_atoi(av[2]);
+    data->time_to_sleep = ft_atoi(av[3]);
+    data->death_happened = false;
+    data->all_eats = 0;
+    // if the user provided 6 args the program will pass must_eats as true
+    if(must_eats)
+        data->must_eats = av[4];
+    else
+        data->must_eats = -1;
+    init_mutexes();
+    return (EXIT_SUCCESS);
 }
 static int  philos_checker(t_data *data, t_philo **philos, int ac, char **av)
 {
@@ -23,7 +38,7 @@ static int  philos_checker(t_data *data, t_philo **philos, int ac, char **av)
         error_message("Error: At least one argument is not valid.\n");
 		return (EXIT_FAILURE);
     }
-    if(init_data() || init_philos())
+    if(init_data(av + 1, data, (ac == 6)) || init_philos())
     {
         error_message("Error: Malloc failed.\n");
         return (EXIT_FAILURE);
