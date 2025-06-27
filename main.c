@@ -28,7 +28,9 @@ int init_data(char *av[], t_data *data, int must_eats)
         data->must_eats = av[4];
     else
         data->must_eats = -1;
-    init_mutexes();
+
+    ------->>>>> init_mutexes(); <<<<---------
+
     return (EXIT_SUCCESS);
 }
 static int  philos_checker(t_data *data, t_philo **philos, int ac, char **av)
@@ -38,9 +40,9 @@ static int  philos_checker(t_data *data, t_philo **philos, int ac, char **av)
         error_message("Error: At least one argument is not valid.\n");
 		return (EXIT_FAILURE);
     }
-    if(init_data(av + 1, data, (ac == 6)) || init_philos())
+    if(init_data(av + 1, data, (ac == 6)) || ------>>> init_philos() <<<<<-----)
     {
-        error_message("Error: Malloc failed.\n");
+        error_message("Error: Malloc failed.\n"y);
         return (EXIT_FAILURE);
     }
     return (EXIT_SUCCESS);
