@@ -12,6 +12,18 @@
 
 #include "philo.h"
 
+void init_mutexes(t_data *data)
+{
+    int i;
+
+    i = -1;
+    pthread_mutex_init(&data->mutex.print, NULL);
+    pthread_mutex_init(&data->mutex.death, NULL);
+    pthread_mutex_init(&data->mutex.meal, NULL);
+    while(++i < data->nbr_of_philos)
+        pthread_mutex_init(&data->mutex.fork[i], NULL);
+}
+
 int init_data(char *av[], t_data *data, int must_eats)
 {
     data->mutex.fork = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
@@ -28,8 +40,8 @@ int init_data(char *av[], t_data *data, int must_eats)
         data->must_eats = av[4];
     else
         data->must_eats = -1;
-
-    ------->>>>> init_mutexes(); <<<<---------
+    //init mutexes we give it data to initialize the fucking mutexes
+    ------->>>>> init_mutexes(data); <<<<---------
 
     return (EXIT_SUCCESS);
 }
