@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-void init_mutexes(t_data *data)
+static void init_mutexes(t_data *data)
 {
     int i;
 
@@ -23,8 +23,7 @@ void init_mutexes(t_data *data)
     while(++i < data->nbr_of_philos)
         pthread_mutex_init(&data->mutex.fork[i], NULL);
 }
-
-int init_data(char *av[], t_data *data, int must_eats)
+static int init_data(char *av[], t_data *data, int must_eats)
 {
     data->mutex.fork = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
     if(!data->mutex.fork)
@@ -45,6 +44,28 @@ int init_data(char *av[], t_data *data, int must_eats)
 
     return (EXIT_SUCCESS);
 }
+
+static int init_philos(t_philo **philos, t_data data)
+{
+    *philos = malloc(sizeof(t_philo) * data->nbr_of_philos);
+    if(!(*philos))
+        return (EXIT_FAILURE);
+    int i;
+
+    i = 0;
+    while(i < data->nbr_of_philos)
+    {
+        (*philos)[i].id = i + 1;
+        (*philos)[i].data = data;
+        (*philos)[i].meals_count = 0;
+        (*philos)[i].finished = false;
+        (*philos)[i].left_fork = i;
+        (*philos)[i].right_fork = (i + 1) % data->nbr_of_philos;
+        i++;
+    }
+    return(EXIT_SUCCESS);
+}
+
 static int  philos_checker(t_data *data, t_philo **philos, int ac, char **av)
 {
     if(validate_args(ac - 1, av + 1))
@@ -52,7 +73,7 @@ static int  philos_checker(t_data *data, t_philo **philos, int ac, char **av)
         error_message("Error: At least one argument is not valid.\n");
 		return (EXIT_FAILURE);
     }
-    if(init_data(av + 1, data, (ac == 6)) || ------>>> init_philos() <<<<<-----)
+    if(init_data(av + 1, data, (ac == 6)) || ------>>> init_philos(philos, data) <<<<<-----)
     {
         error_message("Error: Malloc failed.\n"y);
         return (EXIT_FAILURE);
@@ -61,6 +82,8 @@ static int  philos_checker(t_data *data, t_philo **philos, int ac, char **av)
 }
 int main(int ac, char **av)
 {
+    t_data data;
+	t_philo	*philos;
     if(av != 5 || av != 6)
     {
         error_message("Error: Invalid number of arguments, Expected 5 or 6.\n");
@@ -68,4 +91,15 @@ int main(int ac, char **av)
     }
     if(ac == 6 && ft_atoi(av[5]) < 0)
         return (EXIT_SUCCESS);
+    //Now you should add the philos_checker
+    if(philos_checker(&data, &philos , argc, argv) || ----->>> begin_simulation(philos) <<<-----)
+    {
+        //if philos_checker return 1 then i should clean this shit
+        ----->>> cleanup(&philos); <<<-----
+        return (EXIT_FAILURE);
+    }
+    // in this if statement we add the simulation 
+    // so we should add the simulation function and the cleanup function
+    cleanup(&philos);
+    return (EXIT_SUCCESS);
 }
