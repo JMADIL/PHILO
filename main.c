@@ -40,8 +40,7 @@ static int init_data(char *av[], t_data *data, int must_eats)
     else
         data->must_eats = -1;
     //init mutexes we give it data to initialize the fucking mutexes
-    ------->>>>> init_mutexes(data); <<<<---------
-
+    init_mutexes(data);
     return (EXIT_SUCCESS);
 }
 
@@ -73,7 +72,7 @@ static int  philos_checker(t_data *data, t_philo **philos, int ac, char **av)
         error_message("Error: At least one argument is not valid.\n");
 		return (EXIT_FAILURE);
     }
-    if(init_data(av + 1, data, (ac == 6)) || ------>>> init_philos(philos, data) <<<<<-----)
+    if(init_data(av + 1, data, (ac == 6)) || init_philos(philos, data))
     {
         error_message("Error: Malloc failed.\n"y);
         return (EXIT_FAILURE);

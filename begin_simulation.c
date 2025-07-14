@@ -11,14 +11,32 @@
 /* ************************************************************************** */
 
 #include <philo.h>
-
+void *one_philo(t_philo *philo)
+{
+    think(philo);
+    pthread_mutex_lock(&philo->data->mutex.forks[philo->right_fork]);
+    --->>> print_state(philo, "has taken a fork"); <<<---
+    --->>> ft_usleep(philo->data->time_to_die, philo); <<<---
+    --->>> print_state(philo, "died"); <<<---
+    pthread_mutex_unlock(&philo->data->mutex.forks[philo->right_fork]); 
+    return (NULL);
+}
 void *routine(void *arg)
 {
     t_philo *philos = (t_philo *)arg;
     if(philos->data->nbr_of_philos == 1)
-       return --->>> one_fork(philos); <<<---
-    
-
+       return (one_philo(philos));
+    if(philos.id % 2 == 0)
+        usleep(1000);
+    while(!--->>> is_dead(philos) <<<---)
+    {
+        think(philos);
+        pick_up_forks(philos);
+        eat(philos);
+        put_down_forks(philos);
+        sleep(philos);
+    }
+    return (NULL);
 }
 int begin_simulation(t_philo *philos)
 {
@@ -42,3 +60,4 @@ int begin_simulation(t_philo *philos)
         pthread_join(&philos[i].thread, NULL);
     return (EXIT_SUCCESS);
 }
+
