@@ -58,6 +58,7 @@ typedef struct s_philo
 	bool			finished;
 }				t_philo;
 
+
 // helper functions
 int	error_message(char *error_message);
 int validate_args(int ac, char **av);

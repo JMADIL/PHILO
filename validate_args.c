@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   validate_args.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+      
+/*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2025/06/10 20:14:59 by ajamoun           #+#    #+#             */
 /*   Updated: 2025/06/10 20:14:59 by ajamoun          ###   ########.fr       */
@@ -17,7 +17,7 @@
 
 static int	ft_isdigit(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -31,8 +31,8 @@ static int	ft_isdigit(char *str)
 
 int	validate_args(int ac, char **av)
 {
-	int i;
-	int num_of_philos;
+	int	i;
+	int	num_of_philos;
 
 	num_of_philos = ft_atoi(av[0]);
 	if (num_of_philos > 200 || num_of_philos <= 0)

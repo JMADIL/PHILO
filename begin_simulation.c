@@ -15,9 +15,9 @@ void *one_philo(t_philo *philo)
 {
     think(philo);
     pthread_mutex_lock(&philo->data->mutex.forks[philo->right_fork]);
-    --->>> print_state(philo, "has taken a fork"); <<<---
-    --->>> ft_usleep(philo->data->time_to_die, philo); <<<---
-    --->>> print_state(philo, "died"); <<<---
+    print_state(philo, "has taken a fork");
+    t_usleep(philo->data->time_to_die, philo);
+    print_state(philo, "died");
     pthread_mutex_unlock(&philo->data->mutex.forks[philo->right_fork]); 
     return (NULL);
 }
@@ -43,7 +43,7 @@ int begin_simulation(t_philo *philos)
     int i;
 
     i = -1;
-    philos->data->start_time = --->>> get_current_time() <<<---;
+    philos->data->start_time = get_current_time();
     while(++i < philos->data->nbr_of_philos)
     {
         philos[i].last_meal_time = philos->data->start_time;
