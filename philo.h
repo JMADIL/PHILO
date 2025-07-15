@@ -11,14 +11,14 @@
 /* ************************************************************************** */
 
 #ifndef PHILO_H
-#define PHILO_H
+# define PHILO_H
 
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <sys/time.h>
-#include <string.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <sys/time.h>
+# include <string.h>
 
 # define EXIT_FAILURE 1
 # define EXIT_SUCCESS 0
@@ -58,10 +58,9 @@ typedef struct s_philo
 	bool			finished;
 }				t_philo;
 
-
 // helper functions
 int	error_message(char *error_message);
-int validate_args(int ac, char **av);
+int	validate_args(int ac, char **av);
 //libc functions
 int	ft_atoi(const char *str);
 #endif

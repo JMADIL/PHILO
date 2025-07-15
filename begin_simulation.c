@@ -28,7 +28,9 @@ void	*one_philo(t_philo *philo)
 
 void	*routine(void *arg)
 {
-	t_philo *philos = (t_philo *)arg;
+	t_philo	*philo;
+
+	philo = (t_philo *)arg;
 	if (philos->data->nbr_of_philos == 1)
 		return (one_philo(philos));
 	if (philos.id % 2 == 0)
@@ -46,7 +48,7 @@ void	*routine(void *arg)
 
 int	begin_simulation(t_philo *philos)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	philos->data->start_time = get_current_time();

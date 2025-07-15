@@ -94,11 +94,11 @@ int main(int ac, char **av)
     if(philos_checker(&data, &philos , argc, argv) || begin_simulation(philos))
     {
         //if philos_checker return 1 then i should clean this shit
-        ----->>> cleanup(&philos); <<<-----
+        cleanup(&philos);
         return (EXIT_FAILURE);
     }
     // in this if statement we add the simulation 
     // so we should add the simulation function and the cleanup function
-    ----->>> cleanup(&philos)<<<-----;
+    cleanup(&philos);
     return (EXIT_SUCCESS);
 }

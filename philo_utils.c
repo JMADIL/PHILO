@@ -2,14 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   philo_utils.c                                      :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
-	+:+     */
-/*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+      
-	+#+        */
-/*                                                +#+#+#+#+#+  
-	+#+           */
-/*   Created: 2025/06/11 21:18:06 by ajamoun           #+#    #+#             */
-/*   Updated: 2025/06/11 21:18:06 by ajamoun          ###   ########.fr       */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/07/15 19:10:25 by ajamoun           #+#    #+#             */
+/*   Updated: 2025/07/15 19:10:25 by ajamoun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +23,8 @@ int	error_message(char *error_message)
 
 t_timestamp	get_current_time(void)
 {
-	struct timeval tv;
-	t_timestamp	miliseconds;
+	struct timeval	tv;
+	t_timestamp		miliseconds;
 
 	gettimeofday(&tv, NULL);
 	miliseconds = (tv.tv_sec * 1000) + (tv.tv_usec / 1000);
@@ -37,22 +34,22 @@ t_timestamp	get_current_time(void)
 void	ft_usleep(t_timestamp	time, t_philo *philo)
 {
 	t_timestamp	wake_up;
+
 	wake_up = get_current_time() + time;
-	while(get_current_time() < wake_up)
+	while (get_current_time() < wake_up)
 	{
-		if(philo_is_dead(philo))
-			break;
+		if (philo_is_dead(philo))
+			break ;
 		usleep(500);
 	}
 }
 
 void	print_state(t_philo	*philo, char *state)
 {
-	if(!philo_is_dead(philo))
+	if (!philo_is_dead(philo))
 	{
 		pthread_mutex_lock(&philo->data->mutex.print);
-		//double protection
-		if(!philo_is_dead(philo))
+		if (!philo_is_dead(philo)) 
 			printf("%-5lu %-4d %s\n", get_current_time()
 				- philo->data->start_time, philo->id, state);
 		pthread_mutex_unlock(&philo->data->mutex.print);

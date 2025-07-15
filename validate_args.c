@@ -37,7 +37,7 @@ int	validate_args(int ac, char **av)
 	num_of_philos = ft_atoi(av[0]);
 	if (num_of_philos > 200 || num_of_philos <= 0)
 	{
-		error_message("Error: Number of philosophers must be between 1 and 200.\n");
+		error_message("Error: Number of philosophers => 1 and 200.\n");
 		return (EXIT_FAILURE);
 	}
 	i = 1;
