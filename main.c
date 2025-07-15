@@ -91,7 +91,7 @@ int main(int ac, char **av)
     if(ac == 6 && ft_atoi(av[5]) < 0)
         return (EXIT_SUCCESS);
     //Now you should add the philos_checker
-    if(philos_checker(&data, &philos , argc, argv) || ----->>> begin_simulation(philos) <<<-----)
+    if(philos_checker(&data, &philos , argc, argv) || begin_simulation(philos))
     {
         //if philos_checker return 1 then i should clean this shit
         ----->>> cleanup(&philos); <<<-----
@@ -99,6 +99,6 @@ int main(int ac, char **av)
     }
     // in this if statement we add the simulation 
     // so we should add the simulation function and the cleanup function
-    cleanup(&philos);
+    ----->>> cleanup(&philos)<<<-----;
     return (EXIT_SUCCESS);
 }
