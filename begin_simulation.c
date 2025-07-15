@@ -13,27 +13,27 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philo.h>
+#include "philo.h"
 
-void	*one_philo(t_philo *philo)
+static void	*one_philo(t_philo *philo)
 {
 	think(philo);
 	pthread_mutex_lock(&philo->data->mutex.forks[philo->right_fork]);
 	print_state(philo, "has taken a fork");
-	t_usleep(philo->data->time_to_die, philo);
+	ft_usleep(philo->data->time_to_die, philo);
 	print_state(philo, "died");
 	pthread_mutex_unlock(&philo->data->mutex.forks[philo->right_fork]);
 	return (NULL);
 }
 
-void	*routine(void *arg)
+static void	*routine(void *arg)
 {
-	t_philo	*philo;
+	t_philo	*philos;
 
-	philo = (t_philo *)arg;
+	philos = (t_philo *)arg;
 	if (philos->data->nbr_of_philos == 1)
 		return (one_philo(philos));
-	if (philos.id % 2 == 0)
+	if (philos->id % 2 == 0)
 		usleep(1000);
 	while (!philo_is_dead(philos))
 	{
@@ -41,7 +41,7 @@ void	*routine(void *arg)
 		pick_up_forks(philos);
 		eat(philos);
 		put_down_forks(philos);
-		sleep(philos);
+		sleep_philo(philos);
 	}
 	return (NULL);
 }
@@ -62,10 +62,10 @@ int	begin_simulation(t_philo *philos)
 			return (EXIT_FAILURE);
 		}
 	}
-	if (philo->data->nbr_of_philos > 1)
+	if (philos->data->nbr_of_philos > 1)
 		monitor_death(philos);
 	i = -1;
-	while (++i < philo->data->nbr_of_philos)
-		pthread_join(&philos[i].thread, NULL);
+	while (++i < philos->data->nbr_of_philos)
+		pthread_join(philos[i].thread, NULL);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 00:25:23 by ajamoun           #+#    #+#             */
-/*   Updated: 2025/07/15 18:04:26 by ajamoun          ###   ########.fr       */
+/*   Updated: 2025/07/15 23:06:22 by ajamoun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ bool	philo_is_dead(t_philo *philo)
 	return (is_dead);
 }
 
-int	check_death(t_philo *philo)
+static int	check_death(t_philo *philo)
 {
 	t_timestamp	f_ls_meal;
 	int			eats;

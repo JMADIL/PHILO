@@ -6,13 +6,13 @@
 /*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 18:52:04 by ajamoun           #+#    #+#             */
-/*   Updated: 2025/07/15 19:03:45 by ajamoun          ###   ########.fr       */
+/*   Updated: 2025/07/15 21:55:42 by ajamoun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	cleanup(t_philo *philo)
+void	cleanup(t_philo **philo)
 {
 	int	i;
 

@@ -22,7 +22,7 @@ static int	ft_isdigit(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] > 9 || str[i] < 0)
+		if (str[i] > '9' || str[i] < '0')
 			return (EXIT_FAILURE);
 		i++;
 	}
@@ -41,7 +41,7 @@ int	validate_args(int ac, char **av)
 		return (EXIT_FAILURE);
 	}
 	i = 1;
-	while (i < argc)
+	while (i < ac)
 	{
 		if (av[i][0] == '\0' || ft_isdigit(av[i]) || ft_atoi(av[i]) == -1)
 			return (EXIT_FAILURE);

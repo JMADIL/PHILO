@@ -21,12 +21,12 @@ static void init_mutexes(t_data *data)
     pthread_mutex_init(&data->mutex.death, NULL);
     pthread_mutex_init(&data->mutex.meal, NULL);
     while(++i < data->nbr_of_philos)
-        pthread_mutex_init(&data->mutex.fork[i], NULL);
+        pthread_mutex_init(&data->mutex.forks[i], NULL);
 }
 static int init_data(char *av[], t_data *data, int must_eats)
 {
-    data->mutex.fork = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
-    if(!data->mutex.fork)
+    data->mutex.forks = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
+    if(!data->mutex.forks)
         return (EXIT_FAILURE);
     data->nbr_of_philos = ft_atoi(av[0]);
     data->time_to_die = ft_atoi(av[1]);
@@ -36,7 +36,7 @@ static int init_data(char *av[], t_data *data, int must_eats)
     data->all_eats = 0;
     // if the user provided 6 args the program will pass must_eats as true
     if(must_eats)
-        data->must_eats = av[4];
+        data->must_eats = ft_atoi(av[4]);
     else
         data->must_eats = -1;
     //init mutexes we give it data to initialize the fucking mutexes
@@ -44,9 +44,9 @@ static int init_data(char *av[], t_data *data, int must_eats)
     return (EXIT_SUCCESS);
 }
 
-static int init_philos(t_philo **philos, t_data data)
+static int init_philos(t_philo **philos, t_data *data)
 {
-    *philos = malloc(sizeof(t_philo) * data->nbr_of_philos);
+    *philos = (t_philo *) malloc(sizeof(t_philo) * data->nbr_of_philos);
     if(!(*philos))
         return (EXIT_FAILURE);
     int i;
@@ -74,7 +74,7 @@ static int  philos_checker(t_data *data, t_philo **philos, int ac, char **av)
     }
     if(init_data(av + 1, data, (ac == 6)) || init_philos(philos, data))
     {
-        error_message("Error: Malloc failed.\n"y);
+        error_message("Error: Malloc failed.\n");
         return (EXIT_FAILURE);
     }
     return (EXIT_SUCCESS);
@@ -83,15 +83,16 @@ int main(int ac, char **av)
 {
     t_data data;
 	t_philo	*philos;
-    if(av != 5 || av != 6)
+    
+    if(ac != 5 && ac != 6)
     {
         error_message("Error: Invalid number of arguments, Expected 5 or 6.\n");
         return (EXIT_FAILURE);
     }
-    if(ac == 6 && ft_atoi(av[5]) < 0)
+    if(ac == 6 && ft_atoi(av[ac - 1]) == 0)
         return (EXIT_SUCCESS);
     //Now you should add the philos_checker
-    if(philos_checker(&data, &philos , argc, argv) || begin_simulation(philos))
+    if(philos_checker(&data, &philos , ac, av) || begin_simulation(philos))
     {
         //if philos_checker return 1 then i should clean this shit
         cleanup(&philos);
