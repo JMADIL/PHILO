@@ -31,6 +31,9 @@ static int init_data(char *av[], t_data *data, int must_eats)
     data->time_to_sleep = ft_atoi(av[3]);
     data->death_happened = false;
     data->all_eats = 0;
+    data->mutex.forks = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
+    if(!data->mutex.forks)
+    return (EXIT_FAILURE);
     // if the user provided 6 args the program will pass must_eats as true
     if(must_eats)
         data->must_eats = ft_atoi(av[4]);
@@ -41,6 +44,7 @@ static int init_data(char *av[], t_data *data, int must_eats)
         return (EXIT_FAILURE);
     //init mutexes we give it data to initialize the fucking mutexes
     init_mutexes(data);
+
     return (EXIT_SUCCESS);
 }
 
@@ -93,7 +97,7 @@ int main(int ac, char **av)
         return (EXIT_SUCCESS);
     //Now you should add the philos_checker
     if(philos_checker(&data, &philos , ac, av))
-        return(EXIT_FAILURE); 
+         return (EXIT_FAILURE);
     if(begin_simulation(philos))
     {
         cleanup(&philos);
