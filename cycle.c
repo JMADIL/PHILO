@@ -6,7 +6,7 @@
 /*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/14 17:16:12 by ajamoun           #+#    #+#             */
-/*   Updated: 2025/07/15 23:07:48 by ajamoun          ###   ########.fr       */
+/*   Updated: 2025/07/16 17:00:07 by ajamoun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,9 @@ void	pick_up_forks(t_philo *philo)
 {
 	int	first;
 	int	second;
-
+	
 	first = philo->left_fork;
 	second = philo->right_fork;
-	if (first > second)
-	{
-		first = philo->right_fork;
-		second = philo->left_fork;
-	}
 	pthread_mutex_lock(&philo->data->mutex.forks[first]);
 	print_state(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->data->mutex.forks[second]);
