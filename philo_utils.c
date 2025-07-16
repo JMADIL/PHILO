@@ -49,7 +49,7 @@ void	print_state(t_philo	*philo, char *state)
 	if (!philo_is_dead(philo))
 	{
 		pthread_mutex_lock(&philo->data->mutex.print);
-		if (!philo_is_dead(philo)) 
+		if (!philo_is_dead(philo))
 			printf("%-5lu %-4d %s\n", get_current_time()
 				- philo->data->start_time, philo->id, state);
 		pthread_mutex_unlock(&philo->data->mutex.print);

@@ -6,7 +6,7 @@
 /*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 00:25:23 by ajamoun           #+#    #+#             */
-/*   Updated: 2025/07/15 23:06:22 by ajamoun          ###   ########.fr       */
+/*   Updated: 2025/07/16 16:17:50 by ajamoun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,19 @@ bool	philo_is_dead(t_philo *philo)
 	return (is_dead);
 }
 
+
 static int	check_death(t_philo *philo)
 {
-	t_timestamp	f_ls_meal;
-	int			eats;
-	int			nbr_of_philos;
+	t_timestamp		inactive_time;
+	int				eats;
+	int				nbr_of_philos;
 
 	pthread_mutex_lock(&philo->data->mutex.meal);
 	eats = philo->data->all_eats;
-	f_ls_meal = get_current_time() - philo->last_meal_time;
+	inactive_time = get_current_time() - philo->last_meal_time;
 	pthread_mutex_unlock(&philo->data->mutex.meal);
 	nbr_of_philos = philo->data->nbr_of_philos;
-	if (f_ls_meal >= philo->data->time_to_die || eats == nbr_of_philos)
+	if (inactive_time >= philo->data->time_to_die || eats == nbr_of_philos)
 	{
 		if (!philo_is_dead(philo))
 		{

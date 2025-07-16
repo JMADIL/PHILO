@@ -39,6 +39,9 @@ static int init_data(char *av[], t_data *data, int must_eats)
         data->must_eats = ft_atoi(av[4]);
     else
         data->must_eats = -1;
+    data->mutex.forks = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
+    if(!data->mutex.forks)
+        return (EXIT_FAILURE);
     //init mutexes we give it data to initialize the fucking mutexes
     init_mutexes(data);
 
@@ -97,7 +100,6 @@ int main(int ac, char **av)
          return (EXIT_FAILURE);
     if(begin_simulation(philos))
     {
-        //if philos_checker return 1 then i should clean this shit
         cleanup(&philos);
         return (EXIT_FAILURE);
     }
