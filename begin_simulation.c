@@ -34,7 +34,7 @@ static void	*routine(void *arg)
 	if (philos->data->nbr_of_philos == 1)
 		return (one_philo(philos));
 	if (philos->id % 2 == 0)
-		usleep(1000);
+		sleep_philo(philos);
 	while (!philo_is_dead(philos))
 	{
 		think(philos);
