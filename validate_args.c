@@ -17,16 +17,20 @@
 
 static int	ft_isdigit(char *str)
 {
-	int	i;
+    int	i;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] > '9' || str[i] < '0')
-			return (EXIT_FAILURE);
-		i++;
-	}
-	return (EXIT_SUCCESS);
+    i = 0;
+    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+        i++;
+    if (str[i] == '\0')
+        return (EXIT_FAILURE);
+    while (str[i] >= '0' && str[i] <= '9')
+        i++;
+    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+        i++;
+    if (str[i] != '\0')
+        return (EXIT_FAILURE);
+    return (EXIT_SUCCESS);
 }
 
 int	validate_args(int ac, char **av)
@@ -40,7 +44,7 @@ int	validate_args(int ac, char **av)
 		error_message("Error: Number of philosophers => 1 and 200.\n");
 		return (EXIT_FAILURE);
 	}
-	i = 1;
+	i = 0;
 	while (i < ac)
 	{
 		if (av[i][0] == '\0' || ft_isdigit(av[i]) || ft_atoi(av[i]) == -1)
