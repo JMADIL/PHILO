@@ -6,7 +6,7 @@
 /*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/15 00:25:23 by ajamoun           #+#    #+#             */
-/*   Updated: 2025/07/16 16:17:50 by ajamoun          ###   ########.fr       */
+/*   Updated: 2025/07/17 16:47:05 by ajamoun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ bool	philo_is_dead(t_philo *philo)
 	pthread_mutex_unlock(&philo->data->mutex.death);
 	return (is_dead);
 }
-
 
 static int	check_death(t_philo *philo)
 {

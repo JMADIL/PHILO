@@ -71,12 +71,12 @@ void		put_down_forks(t_philo *philo);
 void		sleep_philo(t_philo *philo);
 void		think(t_philo *philo);
 int			begin_simulation(t_philo *philos);
-bool	philo_is_dead(t_philo *philo);
-void	monitor_death(t_philo *philos);
+bool		philo_is_dead(t_philo *philo);
+void		monitor_death(t_philo *philos);
 // helper functions
 int			error_message(char *error_message);
 int			validate_args(int ac, char **av);
 //libc functions
 int			ft_atoi(const char *str);
-int	ft_strlen(const char *s);
+int			ft_strlen(const char *s);
 #endif

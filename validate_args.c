@@ -17,20 +17,20 @@
 
 static int	ft_isdigit(char *str)
 {
-    int	i;
+	int	i;
 
-    i = 0;
-    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-        i++;
-    if (str[i] == '\0')
-        return (EXIT_FAILURE);
-    while (str[i] >= '0' && str[i] <= '9')
-        i++;
-    while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-        i++;
-    if (str[i] != '\0')
-        return (EXIT_FAILURE);
-    return (EXIT_SUCCESS);
+	i = 0;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] == '\0')
+		return (EXIT_FAILURE);
+	while (str[i] >= '0' && str[i] <= '9')
+		i++;
+	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+		i++;
+	if (str[i] != '\0')
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 int	validate_args(int ac, char **av)

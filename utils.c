@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ajamoun <ajamoun@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/10 20:14:53 by ajamoun           #+#    #+#             */
-/*   Updated: 2025/06/10 20:14:53 by ajamoun          ###   ########.fr       */
+/*   Created: 2025/07/17 16:45:18 by ajamoun           #+#    #+#             */
+/*   Updated: 2025/07/17 16:45:18 by ajamoun          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_atoi(const char *str)
 	res = 0;
 	i = 0;
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
-        i++;
+		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		prev_res = res;
