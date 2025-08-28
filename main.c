@@ -39,9 +39,6 @@ static int	init_data(char *av[], t_data *data, int must_eats)
 		data->must_eats = ft_atoi(av[4]);
 	else
 		data->must_eats = -1;
-	data->mutex.forks = malloc(data->nbr_of_philos * sizeof(pthread_mutex_t));
-	if (!data->mutex.forks)
-		return (EXIT_FAILURE);
 	init_mutexes(data);
 	return (EXIT_SUCCESS);
 }

@@ -15,9 +15,12 @@
 int	error_message(char *error_message)
 {
 	int	len;
+	int	ret;
 
-	len = ft_strlen(error_message) + 1;
-	write(2, error_message, len);
+	len = ft_strlen(error_message);
+	ret = write(2, error_message, len);
+	if (ret == -1)
+		return (-1);
 	return (len);
 }
 

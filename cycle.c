@@ -17,8 +17,16 @@ void	pick_up_forks(t_philo *philo)
 	int	first;
 	int	second;
 
-	first = philo->left_fork;
-	second = philo->right_fork;
+	if (philo->left_fork < philo->right_fork)
+	{
+		first = philo->left_fork;
+		second = philo->right_fork;
+	}
+	else
+	{
+		first = philo->right_fork;
+		second = philo->left_fork;
+	}
 	pthread_mutex_lock(&philo->data->mutex.forks[first]);
 	print_state(philo, "has taken a fork");
 	pthread_mutex_lock(&philo->data->mutex.forks[second]);
@@ -37,8 +45,21 @@ void	eat(t_philo *philo)
 
 void	put_down_forks(t_philo *philo)
 {
-	pthread_mutex_unlock(&philo->data->mutex.forks[philo->right_fork]);
-	pthread_mutex_unlock(&philo->data->mutex.forks[philo->left_fork]);
+	int	first;
+	int	second;
+
+	if (philo->left_fork < philo->right_fork)
+	{
+		first = philo->left_fork;
+		second = philo->right_fork;
+	}
+	else
+	{
+		first = philo->right_fork;
+		second = philo->left_fork;
+	}
+	pthread_mutex_unlock(&philo->data->mutex.forks[second]);
+	pthread_mutex_unlock(&philo->data->mutex.forks[first]);
 }
 
 void	sleep_philo(t_philo *philo)

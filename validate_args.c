@@ -41,14 +41,19 @@ int	validate_args(int ac, char **av)
 	num_of_philos = ft_atoi(av[0]);
 	if (num_of_philos > 200 || num_of_philos <= 0)
 	{
-		error_message("Error: Number of philosophers => 1 and 200.\n");
+		error_message("Error: Number of philosophers must be between 1 and 200.\n");
 		return (EXIT_FAILURE);
 	}
 	i = 0;
 	while (i < ac)
 	{
-		if (av[i][0] == '\0' || ft_isdigit(av[i]) || ft_atoi(av[i]) == -1)
+		if (av[i][0] == '\0' || ft_isdigit(av[i]) || ft_atoi(av[i]) < 0)
 			return (EXIT_FAILURE);
+		if (i > 0 && ft_atoi(av[i]) == 0)
+		{
+			error_message("Error: Time values must be positive.\n");
+			return (EXIT_FAILURE);
+		}
 		i++;
 	}
 	return (EXIT_SUCCESS);
